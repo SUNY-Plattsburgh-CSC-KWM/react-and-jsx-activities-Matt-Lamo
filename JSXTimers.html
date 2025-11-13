@@ -12,29 +12,27 @@
   <script src="react/babel.js"></script>
   <script type="text/babel">
 
-    function Counter({ start }) {
-        const [counter, setCounter] = React.useState(start);
-
-	React.useEffect(() => {
-            const tickTock = () => {
-		setCounter((value) => value + 1);
-            }
-	    
-            const timer = setInterval(tickTock, 1000);
-
-	    return () => {
-		clearInterval(timer);
+  function Counter({ start }) {
+    const [counter, setCounter] = React.useState(start);
+    const [name, setName] = React.useState("Counter");
+	  React.useEffect(() => {
+      const tickTock = () => {
+		  setCounter((value) => value + 1);
+      }
+	    const timer = setInterval(tickTock, 1000);
+      return () => {
+		  clearInterval(timer);
 	    };
-
-	}, []);  // [] tells it to only run once
+	  }, []);  // [] tells it to only run once
 	    
-        return (
-	   <main>
-	      <p>Counter: {counter}</p>
-		<button onClick={() => setCounter(0)}>
-	          Reset
-              </button>
-	   </main>
+    return (
+	    <main>
+	    <p>{name}: {counter}</p>
+	    <button onClick={() => {setCounter(0);
+        setName(prompt("Enter the name for your timer:"));}}>
+	      Reset
+      </button>
+	    </main>
 	);
     }
 
@@ -42,8 +40,6 @@
       return (
         <div>
           <Counter start={0} />
-          <Counter start={123} />
-          <Counter start={-64} />
         </div>
       );
     }
