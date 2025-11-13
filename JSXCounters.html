@@ -12,13 +12,22 @@
   <script src="react/babel.js"></script>
   <script type="text/babel">
 
-    function Counter({ start }) {
-      const [counter, setCounter] = React.useState(start);
+    function Calculator({ start }) {
+      const [total, setTotal] = React.useState(start);
       return (
         <main>
-          <p>Counter: {counter}</p>
-          <button onClick={() => setCounter((value) => value + 1)}>
-            Increment
+          <p>Current Total: {total}</p>
+          <button onClick={() => setTotal((total) => total + parseFloat(prompt("Enter a number to add to the total:")))}>
+            Add
+          </button>
+          <button onClick={() => setTotal((total) => total - parseFloat(prompt("Enter a number to subtract from the total:")))}>
+            Subtract
+          </button>
+          <button onClick={() => setTotal((total) => total * parseFloat(prompt("Enter a number to multiply to the total:")))}>
+            Multiply
+          </button>
+          <button onClick={() => setTotal((total) => total / parseFloat(prompt("Enter a number to divide the total:")))}>
+            Divide
           </button>
         </main>
       );
@@ -27,9 +36,7 @@
     function App() {
       return (
         <div>
-          <Counter start={0} />
-          <Counter start={123} />
-          <Counter start={-64} />
+          <Calculator start={0} />
         </div>
       );
     }
